@@ -1,0 +1,32 @@
+﻿@model List<Student>
+
+<a href="/Student/Create">Add new student</a>
+<br />
+
+<table>
+    <tr>
+        <th>Student Name</th>
+        <th>Student Age</th>
+        <th>Student Image</th>
+        <th>Delete</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <th>@item.StudentName</th>
+            <th>@item.StudentAge</th>
+            <th>
+                <img src="/StudentPhotos/@item.StudentPhoto" onerror="" alt="Student pic" class="rounded-circle" width="90" height="90"/>
+            </th>
+
+            <th>
+                <a href="/Student/Delete/@item.StudentId"><i class="fas fa-trash text-danger fa-lg"></i></a> &nbsp;
+                <a href="/Student/Edit/@item.StudentId"><i class="fas fa-edit text-primary fa-lg"></i></a>
+
+            </th>
+            
+        </tr>
+    }
+</table>
+

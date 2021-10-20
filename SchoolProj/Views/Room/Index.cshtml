@@ -1,0 +1,19 @@
+﻿@model List<Room>
+
+<a href="/Room/Create">Add New Room</a>
+<br />
+
+<table>
+    <tr>
+        <th>Room Name</th>
+        <th>Delete</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <th>@item.RoomName</th>
+            <th><a href="/Room/Delete/@item.RoomId">x</a></th>
+        </tr>
+    }
+</table>

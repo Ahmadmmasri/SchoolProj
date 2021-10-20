@@ -1,0 +1,64 @@
+﻿@model SchoolProj.Models.ViewModels.StudentCourseVM
+<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Back to home Page</a>
+
+<div class="container">
+    <form action="Register" method="post">
+        <div class="row">
+            <div class="col-25">
+                <label for="Student">Students</label>
+            </div>
+            <div class="col-75">
+
+                <select id="studentId" name="StudentId" required>
+
+                    @foreach (var StudentItem in Model.students)
+                    {
+                        <option value="@StudentItem.StudentId">@StudentItem.StudentName</option>
+                    }
+
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-25">
+                <label for="Teacher">Courses</label>
+            </div>
+            <div class="col-75">
+
+                <select id="courseId" name="CourseId" required>
+                    @foreach (var CourseItem in Model.courses)
+                    {
+                        <option value="@CourseItem.CourseId">@CourseItem.CourseName</option>
+                    }
+
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-25">
+                <label for="Rooms">Rooms</label>
+            </div>
+            <div class="col-75">
+
+                <select id="RoomId" name="RoomId" required>
+
+                    @foreach (var RoomItem in Model.rooms)
+                    {
+                        <option value="@RoomItem.RoomId">@RoomItem.RoomName</option>
+                    }
+
+                </select>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <input type="submit" value="Register">
+        </div>
+    </form>
+</div>
+
+
+

@@ -1,0 +1,22 @@
+﻿@model List<Course>
+
+<a href="/Course/Create">Add new Course</a>
+<br />
+
+<table>
+    <tr>
+        <th>Course Name</th>
+        <th>Course Capacity</th>
+        <th>Delete</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <th>@item.CourseName</th>
+            <th>@item.CourseCapacity</th>
+            <th><a href="/Course/Delete/@item.CourseId">x</a></th>
+        </tr>
+    }
+</table>
+

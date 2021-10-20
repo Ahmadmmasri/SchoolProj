@@ -1,0 +1,49 @@
+﻿@model List<Teacher>
+
+<div class="container">
+    <form action="Create" method="post" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-25">
+                <label for="fname">Course Name</label>
+            </div>
+            <div class="col-75">
+                <input type="text" id="CourseName" name="CourseName" placeholder="Course name.." maxlength="15">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="capacity">Capacity</label>
+            </div>
+            <div class="col-75">
+                <input type="number" id="CourseCapacity" name="CourseCapacity" placeholder="Course Capacity..." max="20" min="10">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-25">
+                <label for="lname">Select Teacher</label>
+            </div>
+            <select class="col-75 form-control" id="TeacherID" name="TeacherID">
+                @foreach (var teachers in Model)
+                {
+                    <option value="@teachers.TeacherId">@teachers.TeacherName</option>
+                }
+            </select>
+        </div>
+
+        <div class="row">
+            <div class="col-25">
+                <label for="lname">Course Photo</label>
+            </div>
+            <div class="col-75">
+                <input type="file" name="CoursePhoto" />
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <input type="submit" value="Save">
+        </div>
+    </form>
+</div>

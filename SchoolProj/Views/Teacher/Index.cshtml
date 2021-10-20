@@ -1,0 +1,24 @@
+﻿@model List<Teacher>
+
+<a href="/Teacher/Create">Add new teacher</a>
+<br />
+<table>
+    <tr>
+        <th>Teacher Name</th>
+        <th>Teacher Age</th>
+        <th>Delete</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <th>@item.TeacherName</th>
+            <th>@item.TeacherAge</th>
+            <th>
+                &nbsp; <a href="/Teacher/Delete/@item.TeacherId"><i class="fas fa-trash text-danger fa-lg"></i></a> &nbsp;
+                <a href="/Teacher/Edit/@item.TeacherId"><i class="fas fa-edit text-primary fa-lg"></i></a>
+            </th>
+        </tr>
+    }
+</table>
+
