@@ -43,15 +43,22 @@ namespace SchoolProj.Reposotries
             }
         }
 
-        public void Register(int studentId, int courseId, int roomId)
+        public bool Register(int studentId, int courseId, int roomId)
         {
             StudentCourse std = new StudentCourse();
             std.CourseID = courseId;
             std.StudentId = studentId;
             std.RoomId = roomId;
             std.RegestrationDate = Convert.ToDateTime(DateTime.Now.ToShortDateString());
-            dbconnnection.studentCourses.Add(std);
-            dbconnnection.SaveChanges();
+            var IsStudentInCourse = dbconnnection.studentCourses.Where(x => x.StudentId == studentId && x.CourseID == courseId).FirstOrDefault();
+            if (IsStudentInCourse==null)
+            {
+                dbconnnection.studentCourses.Add(std);
+                dbconnnection.SaveChanges();
+                return true;
+            }
+            else
+                return false;
         }
 
         public List<StudentCourse> GetAllRegestration()
@@ -80,5 +87,6 @@ namespace SchoolProj.Reposotries
             var StudentDetails = dbconnnection.students.Where(x => x.StudentId == id).FirstOrDefault();
             return StudentDetails;
         }
+
     }
 }

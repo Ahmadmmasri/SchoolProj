@@ -13,7 +13,7 @@ namespace SchoolProj.Reposotries
         public List<StudentCourse> GetAllRegestration();
         public void Create(Student student);
         public void Delete(int StudentId);
-        public void Register(int studentId, int courseId , int roomId);
+        public bool Register(int studentId, int courseId , int roomId);
         public void Edit(Student student);
         public Student Edit(int id);
 

@@ -1,4 +1,4 @@
-﻿@model List<StudentCourse>
+﻿@model List<RegestrationDetails>
 
 <a href="/Student/Create">Add new student</a>
 <br />
@@ -7,17 +7,17 @@
     <tr>
         <th>Student id</th>
         <th>Course Id</th>
-        <th>Room id</th>
+        <th>Room Number</th>
         <th>Regestar date</th>
     </tr>
 
     @foreach (var item in Model)
     {
         <tr>
-            <th>@item.StudentId</th>
-            <th>@item.CourseID</th>
-            <th>@item.RoomId</th>
-            <th>@item.RegestrationDate</th>
+            <th>@item.StudentName</th>
+            <th>@item.CoursetName</th>
+            <th>@item.roomId</th>
+            <th>@item.RegestrationDate.ToShortDateString()</th>
 
         </tr>
     }

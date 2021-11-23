@@ -15,19 +15,21 @@ namespace SchoolProj.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IRegestrationDetailsInfo _repo;
         private MyDbContext db;
 
 
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
 
+
+        public HomeController(IRegestrationDetailsInfo repo, MyDbContext db)
+        {
+            this._repo = repo;
+            this.db = db;
+        }
 
         public ActionResult Index()
         {
-            var table= db.studentCourses.ToList();
-            return View(table);
+            return View();
             
         }
 

@@ -18,13 +18,17 @@ namespace SchoolProj.Controllers
         private readonly ICourseRepo courseRepo;
         private readonly IRoomRepo roomRepo;
         private readonly IHostingEnvironment environment;
+        private readonly IRegestrationDetailsInfo regestrationDetails;
+        private readonly MyDbContext _dbcontext;
 
-        public StudentController(IStudentRepo studentRepo, ICourseRepo courseRepo,IRoomRepo roomRepo, IHostingEnvironment environment)
+        public StudentController(MyDbContext dbcontext, IStudentRepo studentRepo, ICourseRepo courseRepo,IRoomRepo roomRepo, IHostingEnvironment environment, IRegestrationDetailsInfo regestrationDetails)
         {
             this.studentRepo = studentRepo;
             this.courseRepo = courseRepo;
             this.roomRepo = roomRepo;
             this.environment = environment;
+            this.regestrationDetails = regestrationDetails;
+            this._dbcontext = dbcontext;
         }
 
         [HttpGet]
@@ -64,7 +68,9 @@ namespace SchoolProj.Controllers
                 studentRepo.Create(student);
             }
             List<Student> studentlist = studentRepo.GetAllStudents();
-            return View("Index", studentlist);
+
+
+                return View("Index", studentlist);
         }
 
         [HttpGet]
@@ -80,36 +86,32 @@ namespace SchoolProj.Controllers
         [HttpGet]
         public ActionResult Register()
         {
+
             StudentCourseVM data = new StudentCourseVM();
             data.courses = courseRepo.GetAllCourses();
             data.students = studentRepo.GetAllStudents();
             data.rooms = roomRepo.GetAllRooms();
+            ViewBag.result = HttpContext.Session.GetString("resultvalue");
+
             return View(data);
+
         }
 
         [HttpPost]
         public ActionResult Register( int studentId, int courseId, int roomId)
         {
-            studentRepo.Register(studentId, courseId, roomId);
+
+            bool IsCreated = studentRepo.Register(studentId, courseId, roomId);
+            bool? result= IsCreated == true ?  true : false;
+            HttpContext.Session.SetString("resultvalue", result.ToString());
+
             return RedirectToAction("Register");
         }
 
         [HttpGet]
         public ActionResult AllRegerstration()
         {
-            //var obj = from StdCourse in dbconnnection.studentCourses
-            //          join st in dbconnnection.students
-            //          on StdCourse.StudentId equals st.StudentId
-            //          join pt in dbconnnection.courses
-            //          on StdCourse.CourseID equals pt.CourseId
-            //          select new
-            //          {
-            //              pt.CourseName,
-            //              st.StudentName,
-            //          };
-
-            List<StudentCourse> Regestrationtlist = studentRepo.GetAllRegestration();
-            return View(Regestrationtlist);
+            return View(regestrationDetails.GetAll());
         }
 
 

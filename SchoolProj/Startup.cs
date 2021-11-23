@@ -35,7 +35,14 @@ namespace SchoolProj
             services.AddTransient<ITeacherRepo,teacherRepo>();
             services.AddTransient<IRoomRepo,RoomRepo>();
             services.AddTransient<ICourseRepo,CourseRepo>();
+            services.AddTransient<IRegestrationDetailsInfo,RegestrationDetailsInfo>();
+            services.AddHttpContextAccessor();
+
             //end of  service injection
+
+            services.AddSession();
+
+            services.AddHttpContextAccessor();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,6 +64,8 @@ namespace SchoolProj
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {

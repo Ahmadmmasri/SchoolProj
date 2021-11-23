@@ -10,5 +10,7 @@ namespace SchoolProj.Models.ViewModels
       public List<Student> students { get; set; }
       public List<Course> courses { get; set; }
       public List<Room> rooms { get; set; }
+      public List<RegestrationDetails> RegestrationDetails { get; set; }
+
     }
 }

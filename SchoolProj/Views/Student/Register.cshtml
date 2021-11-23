@@ -1,4 +1,23 @@
 ﻿@model SchoolProj.Models.ViewModels.StudentCourseVM
+
+
+@if (ViewBag.result == "False")
+{
+    ViewBag.result = "";
+    <div class="alert alert-danger" role="alert">
+        this student already sign in the course
+    </div>
+
+}
+else if(ViewBag.result == "True")
+{
+    ViewBag.result = "";
+
+    <div class="alert alert-success" role="alert">
+         student has sign in the course successfully
+    </div>
+}
+
 <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Back to home Page</a>
 
 <div class="container">
